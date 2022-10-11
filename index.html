@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horror Movie Quiz</title>
+</head>
+
+<link rel="stylesheet" href="./assets/reset.css">
+<link rel="stylesheet" href="./assets/style.css">
+
+<body>    
+
+    <nav class="top-nav">
+            <p><a href="#high-scores" id="view-high-scores">View High Scores</a></p>
+            <p>Time Left: <span id="time-left">--</span></p>
+    </nav>
+<main id="main-container">
+    <section id="start">
+        <h1>Horror Movie Quiz</h1>
+        <p>Let's test your knowledge of classic horror movies with a timed quiz! <b>REMEMBER:</b> time will be subtracted for every incorrect answer.  Click the start button when you're ready to begin.</p>
+        <button type="button" style="display:block; margin: 0 auto;" id="start-button">Start Quiz</button>
+    </section>
+
+    <div id="question-card" style="display:none">
+            <h1 id="question-title"></h1>
+        <section id="question-options">
+            <p><button id="btn0"></button></p>
+            <p><button id="btn1"></button></p>
+            <p><button id="btn2"></button></p>
+            <p><button id="btn3"></button></p>
+
+            <p id="answer-check" style="display:none"></p>
+        </section>
+    </div>
+
+    <div id="high-scores-card" style="display:none">
+        <h1>High Scores</h1>
+        <div id="list-of-high-scores">
+        </div>
+        <p><button type="button" id="back-button">Back</button> <button type="button" id="clear-button">Clear</button></p>
+    </div>
+
+    <div id="results-card" style="display:none">
+        <h1>Results</h1>
+        <p>Your final score is <span id="final-score"></span> !</p>
+
+        <p>Enter your initials: <input id="userInput" type="text"></p>
+        <button type="submit" id="submit-button">Submit</button>
+    </div>
+    <script type="text/javascript" src="./assets/script.js"></script>
+  
+
+</main>   
+</body>
+</html>
