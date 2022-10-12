@@ -1,3 +1,5 @@
+// question object
+
 const questions = [
     {
         question: "What did the people of Haddonfield also call Michael Meyers?",
@@ -61,6 +63,8 @@ const questions = [
     }
 ];
 
+// variables to link ids
+
 var timer = document.getElementById("time-left");
 var startCard = document.getElementById("start");
 var startButton = document.getElementById("start-button");
@@ -82,26 +86,33 @@ var choiceB = document.getElementById("btn1");
 var choiceC = document.getElementById("btn2");
 var choiceD = document.getElementById("btn3");
 
-var timeTotal = 160;
+// other used variables in code
+
 var questionArray = 0;
 var scoreTally = 0;
+var time = questions.length * 15;
+var timerId;
+
+// timer
+
+function clockTick() {
+    time--;
+    timer.textContent = time;
+
+    if (time <= 0) {
+        endGame();
+    }
+
+}
+
+// displays question card & starts timer. runs next function
 
 function startQuiz() {
-    
     startCard.style.display = "none";
     questionCard.style.display = "block";
-
-    var beginTimer = setInterval(function() {
-        timeTotal--;
-        timer.textContent = timeTotal;
-            if (timeTotal <= 0) {
-                clearInterval(beginTimer)
-            } 
-            
-            if (questionArray < (questions.length - 1)) {
-                endGame();
-            }
-    },1000);
+    
+    timerId = setInterval(clockTick, 1000);
+    timer.textContent = time;
 
     displayQuiz();
 
@@ -111,6 +122,8 @@ function displayQuiz() {
     nextQuestion();
 }
 
+// fills questions & choices from object to the html
+
 function nextQuestion() {
     questionTitle.textContent = questions[questionArray].question;
     choiceA.textContent = questions[questionArray].choices[0];
@@ -119,15 +132,22 @@ function nextQuestion() {
     choiceD.textContent = questions[questionArray].choices[3];
 }
 
+//checks answers. cant get this funciton to work with the current code i have. work in progress
+
 function checkAnswer() {
     answerCheck.style.display = "block";
 
+ 
+    var answer = questions.map(function(el) {
+        return el.answer;
+      });
+   console.log(questions[questionArray].choices);
     if (questions[questionArray].answer === questions[questionArray].choices[answer]) {
         scoreTally++;
         answerCheck.textContent = "Correct!";
     } else {
-        timeTotal -= 10;
-        timer.textContent = timeTotal;
+        time -= 10;
+        // timer.textContent = time;
         answerCheck.textContent = "Wrong. The correct answer is " + questions[questionArray].answer;
     }
 
